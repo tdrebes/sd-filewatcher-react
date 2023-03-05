@@ -18,6 +18,7 @@ const createWindow = (): void => {
     webPreferences: {
       preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
     },
+    show: false,
   });
 
   // and load the index.html of the app.
@@ -25,6 +26,10 @@ const createWindow = (): void => {
 
   // Open the DevTools.
   mainWindow.webContents.openDevTools();
+
+  mainWindow.on('ready-to-show', () => {
+    mainWindow.show();
+  });
 };
 
 // This method will be called when Electron has finished
